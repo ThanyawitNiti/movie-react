@@ -7,14 +7,14 @@ export default function Modal({ title, open, onClose, children, maxWidth }) {
           <div className="fixed inset-0 z-30">
             <div className="flex justify-center items-center min-h-full p-4">
               <div
-                className="rounded-lg w-full bg-yellow-50 shadow-2xl border-2 border-yellow-300"
+                className="rounded-lg w-full bg-softYellow shadow-2xl border-2 border-colorGreen"
                 style={{ maxWidth: `${maxWidth}rem` }}
               >
                 <div className="flex justify-between p-4 text-xl border-b">
                   <div className="invisible">X</div>
                   <div className="font-bold">{title}</div>
                   <div
-                    className="text-red-500 cursor-pointer"
+                    className="text-red cursor-pointer"
                     onClick={onClose}
                   >
                     Close

@@ -9,7 +9,7 @@ export default function Card({name,overview,rate,bgDrop,poster}) {
 
   return (
     <>
-    <div className="border-2 border-gray-400  flex flex-col justify-center items-center py-3 px-3 rounded-lg hover:shadow-2xl gap-2">
+    <div className="border-2 border-gray  flex flex-col justify-center items-center py-3 px-3 rounded-lg hover:shadow-2xl gap-2">
       <div className='w-full'>
         <img src={bgDropUrl} className="rounded-lg"/>
       </div>
@@ -17,19 +17,26 @@ export default function Card({name,overview,rate,bgDrop,poster}) {
         <div className="font-bold">{name}</div>
         <div>Rating : {rate}</div>
       </div>
-      {/* <div>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Similique
-        laborum provident non dolorum ullam consequatur eius dolor sapiente modi
-        labore accusantium libero temporibus assumenda, iure ut eveniet,
-        necessitatibus magni cum.
-    </div> */}
-      <div className="border-2 border-blue-300  rounded-lg px-2 font-medium bg-blue-500 text-slate-200">
-        <button >
-            More Detail
+      <div className="border-2 border-gray  rounded-lg px-2 font-medium bg-iceflake text-slate-200 hover:bg-melon hover:shadow-xl">
+        <button onClick={()=>setIsopen(true)}>
+            Summary
         </button>
         </div>
     </div>
-    <Modal/>
+    <Modal
+    open={isOpen}
+    title="Detail"
+    onClose={()=>setIsopen(false)}
+    maxWidth={44}>
+        <div className="flex justify-center flex-col items-center gap-3">
+            <div className="h-1/2 w-1/2  ">
+                <img src={posterUrl} className="rounded-lg"/>
+            </div>
+            <div className="font-medium">
+                {overview}
+            </div>
+        </div>
+    </Modal>
     </>
   );
 }
