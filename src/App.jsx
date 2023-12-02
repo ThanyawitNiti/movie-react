@@ -1,33 +1,34 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
+import { useEffect } from 'react'
+import axios from './config/axios'
+import Card from './card/Card'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [data, setData] = useState()
 
+  useEffect(()=>{
+    axios
+      .get('/movie/watch/list')
+      .then((res)=>{
+        setData(res.data)
+      })
+      .catch((err)=>{
+        console.log(err)
+      })
+  },[])
+
+  console.log(data)
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <div className='border-2 border-red-200  flex flex-wrap justify-center'>
+     <div className='flex flex-row flex-wrap gap-5 justify-center py-4'>
+      {data.map((el)=>(
+        <Card key={el.id} name={el.original_title} overview={el.overview} rate={el.vote_average} bgDrop={el.backdrop_path
+        } poster={el.poster_path}/>
+      ))}
+     </div>
+    </div>
     </>
   )
 }
