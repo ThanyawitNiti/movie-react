@@ -58,7 +58,7 @@ export default function Page() {
               key={el.id}
               name={el.original_title}
               overview={el.overview}
-              rate={el.vote_average}
+              rate={el.vote_average.toFixed(1)}
               bgDrop={el.backdrop_path}
               poster={el.poster_path}
             />
