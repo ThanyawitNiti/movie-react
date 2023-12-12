@@ -4,12 +4,12 @@ import Card from "./card/Card";
 import axios from "./config/axios";
 
 export default function Page() {
-  const [data, setData] = useState();
+  const [data, setData] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
     axios
-      .get("/movie/watch/list")
+      .get("/movie/watch")
       .then((res) => {
         setData(res.data);
       })
@@ -17,10 +17,11 @@ export default function Page() {
         console.log(err);
       });
   }, []);
+
   const handleInput = (e) => {
     setSearch(e.target.value);
   };
-  console.log(data);
+  
   let filterProduct = [...data];
   if (search) {
     filterProduct = data.filter((el) => {
